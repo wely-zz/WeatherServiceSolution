@@ -15,8 +15,7 @@ using Microsoft.AspNetCore.Http.Internal;
 namespace WeatherServiceFunction
 {
     public class WeatherForecast
-    {
-        //public string id { get; set; }
+    { 
         public DateTime date { get; set; }
         public int temperatureC { get; set; }
         public int temperatureF => 32 + (int)(temperatureC / 0.5556);
@@ -57,16 +56,7 @@ namespace WeatherServiceFunction
             }
             var obj = JsonConvert.SerializeObject(wfList);
             var returnResult = (ActionResult)new OkObjectResult(obj);
-
-            // var returnResult = (ActionResult)new OkObjectResult(JsonConvert.SerializeObject(
-            //    Enumerable.Range(1, wfs.Count()).Select(index => new WeatherForecast
-            //    {
-            //        date = wfs.[index].,
-            //        temperatureC = rng.Next(-20, 55),
-            //        summary = Summaries[rng.Next(Summaries.Length)]
-            //    })
-            //    .ToArray()
-            //));
+             
 
             //var returnResult = (ActionResult)new OkObjectResult(JsonConvert.SerializeObject(
             //    Enumerable.Range(1, 2).Select(index => new WeatherForecast
@@ -79,10 +69,7 @@ namespace WeatherServiceFunction
             //));
 
 
-            return returnResult;
-            //return name != null
-            //    ? (ActionResult)new OkObjectResult($"Hello, {name}")
-            //    : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
+            return returnResult; 
         }
     }
 }
