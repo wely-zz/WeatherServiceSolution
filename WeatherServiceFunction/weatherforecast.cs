@@ -11,16 +11,10 @@ using System.Linq;
 using Microsoft.Azure.WebJobs.Host;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http.Internal;
+using WeatherLibrary;
 
 namespace WeatherServiceFunction
 {
-    public class WeatherForecast
-    { 
-        public DateTime date { get; set; }
-        public int temperatureC { get; set; }
-        public int temperatureF => 32 + (int)(temperatureC / 0.5556);
-        public string summary { get; set; }
-    }
     public static class weatherforecast
     {
         private static readonly string[] Summaries = new[]
@@ -35,7 +29,7 @@ namespace WeatherServiceFunction
                 databaseName: "weatherforecast",
                 collectionName: "weatherforecastcontainer",
                 ConnectionStringSetting = "CosmosDBConnection",
-                SqlQuery = "SELECT * FROM c")]
+                SqlQuery = "SELECT top 10 * FROM c order by c.date desc")]
                 IEnumerable<WeatherForecast> wfs,
             ILogger log)
         {
@@ -55,19 +49,7 @@ namespace WeatherServiceFunction
                 );
             }
             var obj = JsonConvert.SerializeObject(wfList);
-            var returnResult = (ActionResult)new OkObjectResult(obj);
-             
-
-            //var returnResult = (ActionResult)new OkObjectResult(JsonConvert.SerializeObject(
-            //    Enumerable.Range(1, 2).Select(index => new WeatherForecast
-            //    {
-            //        date = DateTime.Now.AddDays(index),
-            //        temperatureC = rng.Next(-20, 55),
-            //        summary = Summaries[rng.Next(Summaries.Length)]
-            //    })
-            //    .ToArray()
-            //));
-
+            var returnResult = (ActionResult)new OkObjectResult(obj); 
 
             return returnResult; 
         }

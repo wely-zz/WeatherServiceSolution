@@ -4,11 +4,22 @@
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="loaderio-92ef1412536165201d0d02bd7c20d17c.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="loaderio-92ef1412536165201d0d02bd7c20d17c.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.5.1" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.0.5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherLibrary\WeatherLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
